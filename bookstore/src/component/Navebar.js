@@ -17,6 +17,9 @@ function Navbar() {
             <li className="nav-item">
               <a className="nav-link" href="/listbook">Available Book</a>
             </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/signup">SignUp</a>
+            </li>
  </ul>
  <div>
               <a className="nav-link " href="/bookregister">New Book Register</a>

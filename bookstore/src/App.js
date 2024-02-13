@@ -7,6 +7,7 @@ import Listbook from "./component/Listbook.js";
 import NewBookRegister from './component/NewBookRegister.js';
 import Addbook from './component/Addbook.js';
 import EditBook from './component/Editbook.js';
+import Signup from './component/Signup.js';
 function App() {
   return (
     <BrowserRouter>
@@ -17,6 +18,7 @@ function App() {
         <Route path="/bookregister" element={<NewBookRegister />} />
         <Route path="/addbook" element={<Addbook />} />
         <Route path="/editbook" element={<EditBook />} />
+        <Route path="/signup" element={<Signup />} />
         
       </Routes>
     </BrowserRouter>
