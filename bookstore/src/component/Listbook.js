@@ -1,49 +1,76 @@
-import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { listBook } from '../Services/BookService.js';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+function Listbook() {
+  const [books, setBooks] = useState([]);
+  const navigate = useNavigate(); // Changed navigator to navigate
 
-export default function Listbook() {
-    const dummyData = [
-        { id: 1, name: "Book 1", author: "Author 1", price: "$10" },
-        { id: 2, name: "Book 2", author: "Author 2", price: "$15" },
-        { id: 3, name: "Book 3", author: "Author 3", price: "$20" }
-    ];
+  useEffect(() => {
+    fetchBooks();
+  }, []);
+const fetchBooks = async () => {
+    try {
+      const response = await axios.get("http://localhost:1001/book");
+      setBooks(response.data);
+    } catch (error) {
+      console.error("Error fetching books:", error);
+    }
+  };
+  function addBook() {
+    navigate('/bookregister');
+  }
 
-    return (
-        <div className="text-center">
-            <h2 className="text-center">Book List</h2>
-            <div className="">
-            <Link to="/addbook" className="btn btn-primary">Add Book</Link>
-            </div>
-            <br />
-            <div className="row">
-                <table className="table table-striped table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Book ID</th>
-                            <th>Name</th>
-                            <th>Author</th>
-                            <th>Price</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {dummyData.map(book => (
-                            <tr key={book.id}>
-                                <td>{book.id}</td>
-                                <td>{book.name}</td>
-                                <td>{book.author}</td>
-                                <td>{book.price}</td>
-                                <td>
-                                    <a style={{ color: 'blue' }} ><FontAwesomeIcon icon={faEdit} /></a>
-                                    <a style={{ color: 'red' }}><FontAwesomeIcon icon={faTrashAlt} /></a>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    );
+  function updateBook(id) {
+    navigate(`/edit/${id}`); 
+  }
+
+  return (
+    <div className="text-center">
+      <h2 className="text-center">Book List</h2>
+
+      <button type="button" onClick={addBook} className="btn btn-primary mb-2">
+        Add New Book
+      </button>
+      <br />
+      <div className="row">
+        <table className="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th>Book ID</th>
+              <th>Genre</th>
+              <th>ISBN</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Title</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {books.map((book) => (
+              <tr key={book.id}>
+                <td>{book.id}</td>
+                <td>{book.genre}</td>
+                <td>{book.isbn}</td>
+                <td>{book.price}</td>
+                <td>{book.quantity}</td>
+                <td>{book.title}</td>
+                <td>
+                  <button
+                    type="button"
+                    className="btn btn-success"
+                    onClick={() => updateBook(book.id)}
+                  > 
+                    Update
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
 }
+
+export default Listbook;

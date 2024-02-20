@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { updateBook } from '../Services/BookService.js';
-import axios from 'axios';
-function Editbook({ bookId }) {
+
+function UpdateBookForm({ bookId }) {
   const [book, setBook] = useState({
     title: '',
     genre: '',
@@ -66,4 +66,4 @@ function Editbook({ bookId }) {
   );
 }
 
-export default Editbook;
+export default UpdateBookForm;
