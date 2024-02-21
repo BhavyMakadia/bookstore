@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { listBook } from '../Services/BookService.js';
+
 import { useNavigate } from 'react-router-dom';
+
 import axios from 'axios';
 function Listbook() {
   const [books, setBooks] = useState([]);
@@ -20,13 +21,23 @@ const fetchBooks = async () => {
   function addBook() {
     navigate('/bookregister');
   }
-
-  function updateBook(id) {
-    navigate(`/edit/${id}`); 
-  }
-
+  const editBook = (id) => {
+    navigate(`/edit/${id}`);
+  };
+  
+  const deleteBook = async (id) => {
+    try {
+      await axios.delete(`http://localhost:1001/book/${id}`);
+      // After successful deletion, fetch books again to update the list
+      fetchBooks();
+      alert('Book deleted successfully!');
+    } catch (error) {
+      console.error("Error deleting book:", error);
+      alert('Error deleting book. Please try again.');
+    }
+  };
   return (
-    <div className="text-center">
+    <div className="text-center p-5">
       <h2 className="text-center">Book List</h2>
 
       <button type="button" onClick={addBook} className="btn btn-primary mb-2">
@@ -34,7 +45,7 @@ const fetchBooks = async () => {
       </button>
       <br />
       <div className="row">
-        <table className="table table-striped table-bordered">
+        <table className="table table-striped table-bordered rounded">
           <thead>
             <tr>
               <th>Book ID</th>
@@ -56,13 +67,20 @@ const fetchBooks = async () => {
                 <td>{book.quantity}</td>
                 <td>{book.title}</td>
                 <td>
+                <button
+                    type="button"
+                    className="btn btn-info ms-2"
+                    onClick={() => editBook(book.id)}
+                  > 
+                    Edit
+                  </button>
                   <button
                     type="button"
-                    className="btn btn-success"
-                    onClick={() => updateBook(book.id)}
+                    className="btn btn-danger ms-2"
+                    onClick={() => deleteBook(book.id)}
                   > 
-                    Update
-                  </button>
+                    Delete
+                  </button> 
                 </td>
               </tr>
             ))}

@@ -1,5 +1,5 @@
 import React from 'react';
-import backgroundImage from './BookStore.jpg'; // Import your image
+import backgroundImage from './BookStore.jpg';
 
 function Navbar() {
   return (

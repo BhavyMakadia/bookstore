@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const NewBookRegister = () => {
   const navigator = useNavigate();
-  const { id } = useParams();
-
+  
   const [formData, setFormData] = useState({
-    genre: '', isbn: '', price: '', quantity: '', title: ''
+    genre: '', isbn: '', price: '', quantity: '', title: '',author_id:''
   });
 
   const handleChange = (e) => {
@@ -28,7 +27,7 @@ const NewBookRegister = () => {
       navigator('/listbook');
       alert('Book registered successfully!');
       setFormData({
-        genre: '', isbn: '', price: '', quantity: '', title: ''
+        genre: '', isbn: '', price: '', quantity: '', title: '',author_id:'',
       });
     } catch (error) {
       console.error('Error registering book:', error);
@@ -36,17 +35,12 @@ const NewBookRegister = () => {
     }
   };
 
-  function Title() {
-    if (id) {
-      return <h2 className="text-center">Update Book Register</h2>;
-    } else {
-      return <h4 className="text-center">New Book Register</h4>;
-    }
-  }
+  
 
   return (
     <div className="container my-5 p-5" style={{ border: '1px solid black' }}>
-      <Title />
+      
+      <h4 className="text-center">New Book Register</h4>;
       <form className="col-md-4 offset-md-4" onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="genre" className="form-label">Genre</label>
@@ -67,6 +61,10 @@ const NewBookRegister = () => {
         <div className="mb-3">
           <label htmlFor="price" className="form-label">Price</label>
           <input type="text" className="form-control" name="price" value={formData.price} onChange={handleChange} />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="price" className="form-label">Author ID</label>
+          <input type="text" className="form-control" name="author_id" value={formData.author_id} onChange={handleChange} />
         </div>
         <center><button type="submit" className="btn btn-primary">Submit</button></center>
       </form>
