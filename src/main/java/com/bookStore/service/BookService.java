@@ -1,11 +1,14 @@
 package com.bookStore.service;
 
+import com.bookStore.entity.Author;
 import com.bookStore.entity.Book;
+import com.bookStore.repository.AuthorRepository;
 import com.bookStore.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BookService {
@@ -15,6 +18,21 @@ public class BookService {
 	@Autowired
 	public BookService(BookRepository bookRepository) {
 		this.bookRepository = bookRepository;
+	}
+
+	@Autowired
+	private AuthorRepository authorRepository;
+
+	public Book addBook(Long authorId, Book book) {
+		Optional<Author> optionalAuthor = authorRepository.findById(authorId);
+		if (optionalAuthor.isPresent()) {
+			Author author = optionalAuthor.get();
+			book.setAuthor(author);
+			author.getBooks().add(book);
+			authorRepository.save(author);
+			return bookRepository.save(book);
+		}
+		return null; // Handle the case when the author is not found
 	}
 
 	public void saveBookWithNewAuthor(Book book) {

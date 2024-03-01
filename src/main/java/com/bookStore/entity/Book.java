@@ -14,8 +14,19 @@ public class Book {
 	private double price;
 	private int quantity;
 
+	@ManyToOne
+	@JoinColumn(name = "author_id")
+	private Author author;
 
-	// Getters and setters
+	public Book(Long id, String title, String genre, String isbn, double price, int quantity, Author author) {
+		this.id = id;
+		this.title = title;
+		this.genre = genre;
+		this.isbn = isbn;
+		this.price = price;
+		this.quantity = quantity;
+		this.author = author;
+	}
 
 	public Long getId() {
 		return id;
@@ -65,5 +76,12 @@ public class Book {
 		this.quantity = quantity;
 	}
 
+	public Author getAuthor() {
+		return author;
+	}
 
+	public void setAuthor(Author author) {
+		this.author = author;
+	}
+// Constructors, getters, and setters
 }
