@@ -18,8 +18,13 @@ function Navbar() {
               <a className="nav-link" href="/listbook">Available Book</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/author">AuthorForm</a>
+              <a className="nav-link" href="/authorcomponent">AuthorForm</a>
             </li>
+            
+            <li className="nav-item">
+              <a className="nav-link" href="/newauthor">AuthorForm 2</a>
+            </li>
+            newauthor
           </ul>
           <div>
             <a className="nav-link"style={{color:"black" }} href="/bookregister">New Book Register</a>
