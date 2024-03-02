@@ -15,9 +15,11 @@ function Navbar() {
               <a className="nav-link" href="/listbook">MyBook</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/listbook">Available Book</a>
+              <a className="nav-link" href="/listauthor">Available Author</a>
             </li>
-
+            <li className="nav-item">
+              <a className="nav-link" href="/addbook">Add book</a>
+            </li>
             
            </ul>
           <div>

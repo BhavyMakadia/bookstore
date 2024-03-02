@@ -1,5 +1,6 @@
 package com.bookStore.entity;
 
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -16,8 +17,11 @@ public class Author {
     @ManyToMany(mappedBy = "authors")
     private Set<Book> books = new HashSet<>();
 
-    // Getters and setters
+    // Default constructor
+    public Author() {
+    }
 
+    // Getters and setters
     public Long getId() {
         return id;
     }

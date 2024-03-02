@@ -1,5 +1,7 @@
 package com.bookStore.entity;
 
+import com.bookStore.controller.AuthorController;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;

@@ -24,11 +24,20 @@ public class BookController {
 	public List<Book> getAllBooks() {
 		return bookService.getAllBooks();
 	}
+
+
 	@PostMapping("/new")
-	public ResponseEntity<Void> saveBookWithNewAuthor(@RequestBody Book book, @RequestBody Author author) {
-		bookService.saveBookWithNewAuthor(book, author);
+	public ResponseEntity<Void> saveBookWithNewAuthor(@RequestBody Book book, @RequestParam(value = "authorId", required = false) Long authorId) {
+		if (authorId != null && authorId > 0) {
+			Author author = new Author();
+			author.setId(authorId);
+			book.getAuthors().add(author);
+		}
+
+		bookService.saveBook(book);
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
+
 
 	@PostMapping
 	public Book addBook(@RequestBody Book book) {
