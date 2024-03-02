@@ -8,9 +8,9 @@ import NewBookRegister from './component/NewBookRegister.js';
 import Addbook from './component/Addbook.js';
 import Editbook from './component/Editbook.js'; 
 import Signup from './component/Signup.js';
-
+import ListAuthor from './component/Listauthor.js';
 import Footer from './component/Footer.js';
-import AuthorComponent from './component/AuthorComponent.js';
+
 import NewAuthorRegister from './component/NewAuthorRegister.js';
 
 function App() {
@@ -24,9 +24,10 @@ function App() {
         <Route path="/addbook" element={<Addbook />} />
         <Route path="/edit/:id" element={<Editbook />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/authorcomponent" element={<AuthorComponent />} />
+
         <Route path="/newauthor" element={<NewAuthorRegister />} />
-        
+         <Route path="/listauthor" element={<ListAuthor />} />
+
       </Routes>
       <Footer />
     </Router>

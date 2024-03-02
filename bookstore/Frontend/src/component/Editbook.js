@@ -15,7 +15,7 @@ function Editbook() {
 
   useEffect(() => {
     fetchBook();
-  }, []);
+  });
 
   const fetchBook = async () => {
     try {

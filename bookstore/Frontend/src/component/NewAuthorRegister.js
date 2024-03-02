@@ -23,7 +23,7 @@ export default function NewAuthorRegister() {
           'http://localhost:1001/author',formData
         );
         console.log(response.data);
-        navigator('/listbook');
+        navigator('/listauthor');
         alert('Book registered successfully!');
         setFormData({
             name:'',biography:''
