@@ -8,17 +8,25 @@ function Listauthor() {
   const navigate = useNavigate(); // Changed navigator to navigate
 
   useEffect(() => {
-    fetchAuthors();
+    fetchQueues();
   }, []);
-const fetchAuthors = async () => {
-    try {
-           const response = await axios.get('http://localhost:1001/author');
-           setAuthors(response.data);
+ const fetchQueues = async () => {
+         try {
+             const response = await fetch('http://localhost:1001/author/get');
+             if (response.ok) {
+                 const data = await response.json();
+                 console.log(data);
+                 setAuthors(data);
+             }
+             else{
+
+                 throw new Error('Failed to fetch queues');
+             }
          } catch (error) {
-          console.error('Error fetching authors:', error);
-        }
-  };
-  function addBook() {
+             console.error('Error fetching queues:', error);
+ }
+ };
+    function addBook() {
     navigate('/bookregister');
   }
  function addAuthor() {

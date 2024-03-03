@@ -11,12 +11,18 @@ function Listbook() {
     fetchBooks();
   }, []);
 const fetchBooks = async () => {
-    try {
-      const response = await axios.get("http://localhost:1001/book");
-      setBooks(response.data);
-    } catch (error) {
-      console.error("Error fetching books:", error);
+  try {
+    const response = await fetch("http://localhost:1001/book/gets");
+    console.log("fetch");
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
+    const books = await response.json();
+    setBooks(books);
+  } catch (error) {
+    console.error("Error fetching books:", error);
+  }
+  
   };
   function addBook() {
     navigate('/bookregister');

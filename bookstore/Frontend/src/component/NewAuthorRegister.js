@@ -20,7 +20,7 @@ export default function NewAuthorRegister() {
       e.preventDefault();
       try {
         const response = await axios.post(
-          'http://localhost:1001/author',formData
+          'http://localhost:1001/author/POST',formData
         );
         console.log(response.data);
         navigator('/listauthor');

@@ -14,7 +14,10 @@ public class AuthorService {
     private AuthorRepository authorRepository;
 
     public List<Author> getAllAuthors() {
-        return authorRepository.findAll();
+        System.out.println("getall service");
+
+        List<Author> allAuthors = authorRepository.findAll();
+return allAuthors;
     }
 
     public Author getAuthorById(Long id) {

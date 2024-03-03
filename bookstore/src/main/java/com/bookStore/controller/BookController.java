@@ -20,40 +20,38 @@ public class BookController {
 	public BookController(BookService bookService) {
 		this.bookService = bookService;
 	}
-	@GetMapping
-	public List<Book> getAllBooks() {
-		return bookService.getAllBooks();
-	}
+//	@CrossOrigin("*")
+//	@GetMapping("/get")
+//	public ResponseEntity<List<Book>> getAllBooks() {
+//		return new ResponseEntity.ok(bookService.getAllBooks());
+//	}
+	@CrossOrigin("*")
+	@GetMapping("/gets")
+	public ResponseEntity<List<Book>> getAllBooks() {
+		System.out.println("abc");
+		List<Book> books = bookService.getAllBooks();
+		System.out.println("getlsit");
+		return ResponseEntity.ok(books);
+}
 
 
-	@PostMapping("/new")
-	public ResponseEntity<Void> saveBookWithNewAuthor(@RequestBody Book book, @RequestParam(value = "authorId", required = false) Long authorId) {
-		if (authorId != null && authorId > 0) {
-			Author author = new Author();
-			author.setId(authorId);
-			book.getAuthors().add(author);
-		}
 
-		bookService.saveBook(book);
-		return ResponseEntity.status(HttpStatus.CREATED).build();
-	}
-
-
+	@CrossOrigin("*")
 	@PostMapping
 	public Book addBook(@RequestBody Book book) {
 		return bookService.addBook(book);
 	}
-
+	@CrossOrigin("*")
 	@GetMapping("/{id}")
 	public Book getBookById(@PathVariable Long id) {
 		return bookService.getBookById(id);
 	}
-
+	@CrossOrigin("*")
 	@PutMapping("/{id}")
 	public Book updateBook(@PathVariable Long id, @RequestBody Book book) {
 		return bookService.updateBook(id, book);
 	}
-
+	@CrossOrigin("*")
 	@DeleteMapping("/{id}")
 	public void deleteBook(@PathVariable Long id) {
 		bookService.deleteBook(id);

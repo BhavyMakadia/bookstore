@@ -18,12 +18,7 @@ public class Book {
 	private double price;
 	private int quantity;
 
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(
-			name = "book_author",
-			joinColumns = @JoinColumn(name = "book_id"),
-			inverseJoinColumns = @JoinColumn(name = "author_id"))
-	private Set<Author> authors = new HashSet<>();
+
 
 	// Getters and setters
 
@@ -75,11 +70,5 @@ public class Book {
 		this.quantity = quantity;
 	}
 
-	public Set<Author> getAuthors() {
-		return authors;
-	}
 
-	public void setAuthors(Set<Author> authors) {
-		this.authors = authors;
-	}
 }

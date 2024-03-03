@@ -22,10 +22,7 @@ public class BookService {
 	public void saveBook(Book book) {
 		bookRepository.save(book);
 	}
-	public void saveBookWithNewAuthor(Book book, Author author) {
-		book.getAuthors().add(author); // Add the new author to the book's authors set
-		bookRepository.save(book); // Save the book (and associated author if it's new)
-	}
+
 
 	public List<Book> getAllBooks() {
 		return bookRepository.findAll();
