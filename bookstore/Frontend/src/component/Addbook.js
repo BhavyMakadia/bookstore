@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import backgroundImage from './BookStore.jpg';
 
 const AddBook = () => {
     const [formData, setFormData] = useState({
@@ -59,28 +60,28 @@ const AddBook = () => {
 
 
     return (
-        <div>
-            <h2>Add New Book</h2>
-            <form onSubmit={handleSubmit}>
-<div>
-                    <label>Book:</label>
-                    <select value={selectedBookId} onChange={(e) => setSelectedBookId(e.target.value)} required>
+        <div className="container my-5 p-5" style={{ border: '1px solid black' }} >
+            <h2 className="text-center" > Arrange  book in author wise </h2>
+            <form onSubmit={handleSubmit} className="text-center" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: '', backgroundPosition: '' }}>
+ <div className="mb-3">
+                    <label className="form-label">Book:</label>
+                    <select className="form-control" value={selectedBookId} onChange={(e) => setSelectedBookId(e.target.value)} required>
                         <option value="">Select Book</option>
                         {books.map(book => (
                             <option key={book.id} value={book.id}>{book.title}</option>
                         ))}
                     </select>
                 </div>
-                <div>
+                <div className="mb-3">
                     <label>Author:</label>
-                    <select value={selectedAuthorId} onChange={(e) => setSelectedAuthorId(e.target.value)} required>
+                    <select className="form-control" value={selectedAuthorId} onChange={(e) => setSelectedAuthorId(e.target.value)} required>
                         <option value="">Select Author</option>
                         {authors.map(author => (
                             <option key={author.id} value={author.id}>{author.name}</option>
                         ))}
                     </select>
                 </div>
-                <button type="submit">Add Book</button>
+                <button className="btn btn-primary" type="submit">Add Book</button>
             </form>
         </div>
     );

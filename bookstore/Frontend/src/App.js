@@ -10,6 +10,8 @@ import Editbook from './component/Editbook.js';
 import Signup from './component/Signup.js';
 import ListAuthor from './component/Listauthor.js';
 import Footer from './component/Footer.js';
+import Admin from './component/Admin.js';
+
 
 import NewAuthorRegister from './component/NewAuthorRegister.js';
 
@@ -27,6 +29,7 @@ function App() {
 
         <Route path="/newauthor" element={<NewAuthorRegister />} />
          <Route path="/listauthor" element={<ListAuthor />} />
+         <Route path="/admin" element={<Admin />} />
 
       </Routes>
       <Footer />

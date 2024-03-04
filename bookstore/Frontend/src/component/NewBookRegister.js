@@ -6,7 +6,7 @@ const NewBookRegister = () => {
   const navigator = useNavigate();
   
   const [formData, setFormData] = useState({
-    genre: '', isbn: '', price: '', quantity: '', title: '',author_id:''
+    genre: '', isbn: '', price: '', quantity: '', title: ''
   });
 
   const handleChange = (e) => {
@@ -27,7 +27,7 @@ const NewBookRegister = () => {
       navigator('/listbook');
       alert('Book registered successfully!');
       setFormData({
-        genre: '', isbn: '', price: '', quantity: '', title: '',author_id:'',
+        genre: '', isbn: '', price: '', quantity: '', title: ''
       });
     } catch (error) {
       console.error('Error registering book:', error);
@@ -62,10 +62,7 @@ const NewBookRegister = () => {
           <label htmlFor="price" className="form-label">Price</label>
           <input type="text" className="form-control" name="price" value={formData.price} onChange={handleChange} />
         </div>
-        <div className="mb-3">
-          <label htmlFor="price" className="form-label">Author ID</label>
-          <input type="text" className="form-control" name="author_id" value={formData.author_id} onChange={handleChange} />
-        </div>
+
         <center><button type="submit" className="btn btn-primary">Submit</button></center>
       </form>
     </div>
