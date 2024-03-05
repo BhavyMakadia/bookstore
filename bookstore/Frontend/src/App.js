@@ -14,6 +14,8 @@ import Admin from './component/Admin.js';
 
 
 import NewAuthorRegister from './component/NewAuthorRegister.js';
+import Showpage from './component/Showpage.js';
+import MyBooklist from './component/Mybooklist.js';
 
 function App() {
   return (
@@ -30,6 +32,8 @@ function App() {
         <Route path="/newauthor" element={<NewAuthorRegister />} />
          <Route path="/listauthor" element={<ListAuthor />} />
          <Route path="/admin" element={<Admin />} />
+         <Route path="/showpage" element={<Showpage />} />
+         <Route path="/mybooklist" element={<MyBooklist />} />
 
       </Routes>
       <Footer />

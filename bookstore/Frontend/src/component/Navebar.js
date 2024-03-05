@@ -12,15 +12,20 @@ function Navbar() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link" href="/listbook">MyBook</a>
+              <a className="nav-link" href="/listbook">Edit Book</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/listauthor">Available Author</a>
+              <a className="nav-link" href="/listauthor">Edit Author</a>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="/addbook">Book Manage </a>
             </li>
-            
+            <li className="nav-item">
+              <a className="nav-link" href="/showpage">Show Available book </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/mybooklist">My  book </a>
+            </li>
            </ul>
           <div>
              <a className="nav-link"  style={{color:"black" }} href="/admin">Admin</a>
