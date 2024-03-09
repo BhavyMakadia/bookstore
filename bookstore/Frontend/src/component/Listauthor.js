@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import AdminLayout from './Adminnavebar.js';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -42,6 +43,7 @@ function Listauthor() {
         }
   };
   return (
+    <><AdminLayout />
     <div className="text-center p-5">
 
       <br />
@@ -88,7 +90,7 @@ function Listauthor() {
             <button type="button" onClick={addBook} className="btn btn-primary mb-2">
               Add New Book
             </button>
-    </div>
+    </div>   </>
   );
 }
 

@@ -1,33 +1,29 @@
 package com.bookStore.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+
 @Entity
 public class MyBookList {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String title;
-    private String genre;
-    private String isbn;
-    private double price;
-    private int quantity;
-public MyBookList(){
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "book_id", nullable = false)
+    private Book book;
 
-}
-    public MyBookList(Long id, String title, String genre, String isbn, double price, int quantity) {
-        this.id = id;
-        this.title = title;
-        this.genre = genre;
-        this.isbn = isbn;
-        this.price = price;
-        this.quantity = quantity;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+    public MyBookList( ) {
+
     }
+    public MyBookList( Book book, User user) {
 
-// Getters and setters
+        this.book = book;
+        this.user = user;
+    }
 
     public Long getId() {
         return id;
@@ -37,45 +33,19 @@ public MyBookList(){
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public Long  getBook() {
+        return book.getId();
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setBook(Book book) {
+        this.book = book;
     }
 
-    public String getGenre() {
-        return genre;
+    public Long getUser() {
+        return user.getId();
     }
 
-    public void setGenre(String genre) {
-        this.genre = genre;
+    public void setUser(User user) {
+        this.user = user;
     }
-
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-
 }

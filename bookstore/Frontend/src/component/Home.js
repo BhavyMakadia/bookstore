@@ -3,12 +3,15 @@ import backgroundImage from './bgimage.jpg';
 import b1 from'./1.jpg';
 import b2 from'./2.jpg';
 import b3 from'./3.jpg';
+import Navbar from './Navebar.js';
 
 
 
 export default function Home() {
   return (
+<><Navbar />
     <div className='text-center my-5'  style={{ paddingBottom: '50px' }}>
+    
      <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
       <ol className="carousel-indicators">
         <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>
@@ -46,5 +49,6 @@ export default function Home() {
       
     </div>
     </div>
+    </>
   )
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import backgroundImage from './BookStore.jpg';
 
-function Navbar() {
+function Adminnavebar() {
   return (
     <nav className="navbar navbar-expand-lg p-3 mb-2 text-white" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: '', backgroundPosition: '' }}>
       <div className="container-fluid">
@@ -11,29 +11,35 @@ function Navbar() {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            
             <li className="nav-item">
-              <a className="nav-link" href="/showbook">Show  book </a>
+              <a className="nav-link" href="/listbook">Edit Book</a>
             </li>
-            {/* <li className="nav-item">
-              <a className="nav-link" href="/mybooklist">My  book </a>
-            </li> */}
+            <li className="nav-item">
+              <a className="nav-link" href="/listauthor">Edit Author</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/addbook">Book Manage </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/bookregister">Add Book</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/newauthor">Add Author</a>
+            </li>
             <li className="nav-item">
               <a className="nav-link" href="/adminlogin">Login admin</a>
             </li>
-            
+           
+            <li className="nav-item">
+              <a className="nav-link" href="/adminlogin">Login admin</a>
+            </li>
+
            </ul>
-          <div>
-            
-             <a className="nav-link"  style={{color:"black" }} href="/signin">SignIn</a>
-             <a className="nav-link"  style={{color:"black" }} href="/signup">SignUp</a>
-             
-             
-          </div>
+          
         </div>
       </div>
     </nav>
   );
 }
 
-export default Navbar;
+export default Adminnavebar;

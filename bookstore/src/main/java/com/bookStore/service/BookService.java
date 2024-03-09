@@ -3,15 +3,20 @@ package com.bookStore.service;
 
 import com.bookStore.entity.Author;
 import com.bookStore.entity.Book;
+import com.bookStore.entity.User;
 import com.bookStore.repository.BookRepository;
+import com.bookStore.repository.MyBookListRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Set;
 
 @Service
 public class BookService {
+	@Autowired
+	private MyBookListRepository myBookListRepository;
 
 	@Autowired
 	private BookRepository bookRepository;
@@ -40,8 +45,15 @@ public class BookService {
 		updatedBook.setId(id);
 		return bookRepository.save(updatedBook);
 	}
-
+	@Transactional
+	public void removeBookuser(Book book, User user) {
+		myBookListRepository.deleteBybookAndUser(book,user);
+	}
 	public void deleteBook(Long id) {
 		bookRepository.deleteById(id);
+	}
+
+	public List<Book> getAllBooksByUser(Long userId){
+		return bookRepository.findBooksByUserId(userId);
 	}
 }

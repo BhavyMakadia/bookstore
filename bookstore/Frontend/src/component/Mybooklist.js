@@ -1,87 +1,131 @@
-import React, { useState, useEffect } from 'react';
+import React, {useEffect, useState} from "react";
+import Usernavebar from './Usernavebar.js';
+export default function Mybooklist(){
+    const [user,setUser] = useState([]);
+    const [books,setBooks] = useState([]);
+    const [exitStatus,setExitStatus] = useState("");
+    let userName;
 
-import { useNavigate } from 'react-router-dom';
+    useEffect(() => {
+        const token = sessionStorage.getItem('token');
+        const name = token.split("|");
+        userName = name[0];
+        fetchUserId();
+    }, []);
 
-import axios from 'axios';
-function MyBooklist() {
-  const [books, setBooks] = useState([]);
-  const navigate = useNavigate(); // Changed navigator to navigate
+    useEffect(() => {
+        if (user.id) {
+            fetchBookInfo();
+        }
+    }, [user]);
 
-  useEffect(() => {
-    fetchBooks();
-  }, []);
-const fetchBooks = async () => {
-  try {
-    const response = await fetch("http://localhost:1001/book/mybooklist/gets");
-    console.log("fetch");
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+    const fetchUserId = async () => {
+        try {
+            const response = await fetch(`http://localhost:1001/book/getuser/${userName}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (response.ok) {
+                const responseData = await response.json();
+                console.log(responseData);
+                setUser(responseData);
+            } else {
+                throw new Error("User Not Found");
+            }
+
+        } catch (error) {
+            console.error('Error during Fetch user:', error.message);
+        }
+    };
+    const fetchBookInfo = async () => {
+        try{
+            const response = await fetch(`http://localhost:1001/book/books/${user.id}/added`,{
+                method : 'GET',
+                headers : {
+                    'Content-Type': 'application/json',
+                }
+            });
+            if (!response.ok) {
+                throw new Error('Failed to fetch books');
+            }
+            const data = await response.json();
+            console.log(data);
+            setBooks(data);
+        }
+        catch (error) {
+            console.error('Error fetching book:', error);
+        }
     }
-    const books = await response.json();
-    setBooks(books);
-  } catch (error) {
-    console.error("Error fetching books:", error);
-  }
-  
-  };
+    const handleRemove = async (bookId,userId) => {
+        try{
+            const response = await fetch(`http://localhost:1001/book/books/${bookId}/${userId}/delete`,{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
 
- 
-  
-  const deleteBook = async (id) => {
-    try {
-      await axios.delete(`http://localhost:1001/book/remove/${id}`);
-      fetchBooks();
-      alert('Book deleted successfully!');
-    } catch (error) {
-      console.error("Error deleting book:", error);
-      alert('Error deleting book. Please try again.');
-    }
-  };
-  return (
-    <div className="text-center p-5">
-      <h2 className="text-center">Book List</h2>
-
-      
-      <br />
-      <div className="row">
-        <table className="table table-striped table-bordered rounded">
-          <thead>
-            <tr>
-              <th>Book ID</th>
-              <th>Genre</th>
-              <th>ISBN</th>
-              <th>Price</th>
-              <th>Quantity</th>
-              <th>Title</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {books.map((book) => (
-              <tr key={book.id}>
-                <td>{book.id}</td>
-                <td>{book.genre}</td>
-                <td>{book.isbn}</td>
-                <td>{book.price}</td>
-                <td>{book.quantity}</td>
-                <td>{book.title}</td>
-                <td>
+            if (response.ok) {
+                const responseData = await response.json();
+                console.log(responseData.data);
                
-                  <button
-                    type="button"
-                    className="btn btn-danger ms-2"
-                    onClick={() => deleteBook(book.id)}
-                  > 
-                    Delete
-                  </button> 
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
-}
+            } else {
+                const errorData = await response.json();
+                console.error('Error during Delete or Remove User From Book:', errorData.error);
+               
+            }
 
-export default MyBooklist;
+
+        }
+        catch (error) {
+            console.error('Error during Delete or Remove User From Queue:', error.message);
+        }
+    }
+    return (
+        <><Usernavebar />
+            <div className='home-container'>
+                <center><h2 style={{fontSize: "32px"}}>My Books</h2>
+                </center>
+                <center>
+                    <div style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        borderRadius: "10px",
+                        padding: "20px"
+                    }}>
+                        <table style={{width: "80vw", borderCollapse: "collapse", textAlign: "center"}}>
+                            <thead>
+                            <tr style={{backgroundColor: "black", color: "white"}}>
+                                <th style={{padding: "12px 15px",width:"30px",height:"20px", fontSize: "20px"}}>Genre</th>
+                                <th style={{padding: "12px 15px",width:"30px",height:"20px", fontSize: "20px"}}>Isbn</th>
+                                <th style={{padding: "12px 15px",width:"30px",height:"20px", fontSize: "20px"}}>Price</th>
+                                <th style={{padding: "12px 15px",width:"30px",height:"20px", fontSize: "20px"}}>Title</th>
+                                <th style={{padding: "12px 15px",width:"30px",height:"20px", fontSize: "20px"}}>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {books.map(book => (
+                                <tr key={book.id}  className="separator">
+                                    <td>{book.genre}</td>
+                                    <td>{book.isbn}</td>
+                                    <td>{book.price}</td>
+                                    <td>{book.title}</td>
+                                    <td>
+                                        <button onClick={() => handleRemove(book.id, user.id)} style={{backgroundColor:"black",border:"none",color:"white",padding:"10px",paddingLeft:"25px",paddingRight:"25px",borderRadius:"10px"}}>Delete</button>
+                                    </td>
+                                </tr>
+                            ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </center>
+            </div>
+            
+        </>
+    )
+        ;
+}

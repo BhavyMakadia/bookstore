@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
+import AdminLayout from './Adminnavebar.js';
 
 import axios from 'axios';
 function Listbook() {
@@ -43,6 +44,7 @@ const fetchBooks = async () => {
     }
   };
   return (
+    <> <AdminLayout/>
     <div className="text-center p-5">
       <h2 className="text-center">Book List</h2>
 
@@ -93,7 +95,7 @@ const fetchBooks = async () => {
           </tbody>
         </table>
       </div>
-    </div>
+    </div></>
   );
 }
 

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import AdminLayout from './Adminnavebar.js';
+
 import { useNavigate } from 'react-router-dom';
 export default function NewAuthorRegister() {
     const navigator = useNavigate();
@@ -34,6 +36,7 @@ export default function NewAuthorRegister() {
       }
     };
   return (
+    <><AdminLayout />
     <div className="container my-5 p-5" style={{ border: '1px solid black' }}>
     
     <h4 className="text-center">NewAuthorRegister</h4>
@@ -50,5 +53,5 @@ export default function NewAuthorRegister() {
         <center><button type="submit" className="btn btn-primary">Submit</button></center>
       </form>
     </div>
-  )
+  </>)
 }

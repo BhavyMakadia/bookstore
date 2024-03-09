@@ -1,10 +1,11 @@
 
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import backgroundImage from './BookStore.jpg';
 
+import backgroundImage from './BookStore.jpg';
+import AdminLayout from './Adminnavebar.js';
 const Admin = () => {
     return (
+        <><AdminLayout />
         <div className="container my-5 p-5" style={{ border: '1px solid black' }} >
             <h2 className="text-center" > Arrange  book in author wise </h2>
             <form className="text-center" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: '', backgroundPosition: '' }}>
@@ -21,6 +22,7 @@ const Admin = () => {
 
             </form>
         </div>
+        </>
     );
 };
 

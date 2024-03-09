@@ -12,16 +12,4 @@ public class MyBookListService {
     @Autowired
     private MyBookListRepository mybook;
 
-    public void saveMyBooks(MyBookList book) {
-        mybook.save(book);
-    }
-
-        public List<MyBookList> getAllMyBooks(){
-        return mybook.findAll();
-    }
-public void deletemybooklistbyid(Long id)
-{
-    mybook.deleteById(id);
-}
-
 }

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import AdminLayout from './Adminnavebar.js';
 import { useNavigate } from 'react-router-dom';
 
 const NewBookRegister = () => {
@@ -38,6 +39,7 @@ const NewBookRegister = () => {
   
 
   return (
+    <><AdminLayout/>
     <div className="container my-5 p-5" style={{ border: '1px solid black' }}>
       
       <h4 className="text-center">New Book Register</h4>;
@@ -66,6 +68,7 @@ const NewBookRegister = () => {
         <center><button type="submit" className="btn btn-primary">Submit</button></center>
       </form>
     </div>
+    </>
   );
 };
 

@@ -1,8 +1,9 @@
 import React from 'react';
 import backgroundImage from './BookStore.jpg';
 
-function Navbar() {
+function Usernavebar() {
   return (
+    <>
     <nav className="navbar navbar-expand-lg p-3 mb-2 text-white" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: '', backgroundPosition: '' }}>
       <div className="container-fluid">
         <a className="navbar-brand" href="/">Home</a>
@@ -11,29 +12,23 @@ function Navbar() {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            
             <li className="nav-item">
-              <a className="nav-link" href="/showbook">Show  book </a>
+              <a className="nav-link" href="/showpage">Show Available book </a>
             </li>
-            {/* <li className="nav-item">
+           
+            
+           
+             <li className="nav-item">
               <a className="nav-link" href="/mybooklist">My  book </a>
-            </li> */}
-            <li className="nav-item">
-              <a className="nav-link" href="/adminlogin">Login admin</a>
-            </li>
-            
+            </li> 
+           
            </ul>
-          <div>
-            
-             <a className="nav-link"  style={{color:"black" }} href="/signin">SignIn</a>
-             <a className="nav-link"  style={{color:"black" }} href="/signup">SignUp</a>
-             
-             
-          </div>
+          
         </div>
       </div>
     </nav>
+    </>
   );
 }
 
-export default Navbar;
+export default Usernavebar;
