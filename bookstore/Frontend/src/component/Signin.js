@@ -80,17 +80,16 @@ const Signin = () => {
             <div className="container my-5 p-5" style={{ border: '1px solid black' }}>
             <h4 className="text-center">SignIn</h4>
    
-                <div style={{ display: "flex", flexDirection: "column" }}>
-                    Username
+                <div >
+
                     <TextField type="text" name="username" value={credentials.username} onChange={handleChange} label="Enter UserName" />
                 </div>
-                <div style={{ display: "flex", flexDirection: "column" }}>
-                    Password
+                <div >
                     <TextField type="password" name="password" value={credentials.password} onChange={handleChange} label="Enter password" />
                 </div>
-                <button onClick={handleLogin} style={{ width: "15vw", marginTop: "2vh" }}>Login</button>
+                <button className=" btn btn-primary" onClick={handleLogin} style={{ width: "15vw", marginTop: "2vh" }}>SignIn</button>
                 <div style={{ marginTop: "10px" }}>Don't have an account?
-                    <button onClick={() => { navigate("/signup") }}>Sign Up</button>
+                    <button className=" btn btn-primary" onClick={() => { navigate("/signup") }}>Sign Up</button>
                 </div>
             </div>
         </center></>
